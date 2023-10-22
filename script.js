@@ -130,29 +130,44 @@ function createDisk(diskNumber) {
     tower1.insertBefore(disk, tower1.firstChild);
 }
 
+
+ // Resets the game to its initial state by clearing all towers and re-adding the default disks.
+ 
 function resetGame() {
+    // Get a NodeList of all towers.
     const towers = document.querySelectorAll(".tower");
+    
+    // For each tower...
     towers.forEach(tower => {
+        // ...while the tower has a disk (a child element)...
         while (tower.firstChild) {
+            // ...remove the topmost disk from the tower.
             tower.removeChild(tower.firstChild);
         }
+        // Hide the winning banner.
         winBanner.style.display = 'none';
     });
 
-    // Re-add the default disks to tower1
-    const tower1 = document.getElementById("tower1");
-    const disk3 = document.createElement("div");
-    disk3.classList.add("disk");
-    disk3.setAttribute("draggable", "true");
-    disk3.id = "disk3";
-    tower1.appendChild(disk3);
+    // Begin process to re-add the default disks to the first tower.
 
+    // Get a reference to the first tower.
+    const tower1 = document.getElementById("tower1");
+
+    // Create a disk (disk3) and configure its attributes and properties.
+    const disk3 = document.createElement("div");
+    disk3.classList.add("disk");               // Assign the 'disk' class for styling.
+    disk3.setAttribute("draggable", "true");   // Make it draggable.
+    disk3.id = "disk3";                        // Set its unique ID.
+    tower1.appendChild(disk3);                 // Add the disk to the first tower.
+
+    // Repeat the same process for disk2.
     const disk2 = document.createElement("div");
     disk2.classList.add("disk");
     disk2.setAttribute("draggable", "true");
     disk2.id = "disk2";
     tower1.appendChild(disk2);
 
+    // Repeat the same process for disk1.
     const disk1 = document.createElement("div");
     disk1.classList.add("disk");
     disk1.setAttribute("draggable", "true");
@@ -160,25 +175,53 @@ function resetGame() {
     tower1.appendChild(disk1);
 }
 
+
 // CHECK FOR WINNER:
 
+/**
+ * Checks if the provided tower has the correct order of disks to be considered a win.
+ * @param {HTMLElement} tower - The tower element being checked.
+ * @param {number} numberOfDisks - The expected number of disks on the tower.
+ * @returns {boolean} - True if the tower has a winning configuration, otherwise false.
+ */
 function checkTowerForWin(tower, numberOfDisks) {
+    // Get all the disk elements from the provided tower.
     const disks = tower.querySelectorAll(".disk");
+    
+    // If the number of disks in the tower is not equal to the expected number, return false.
     if (disks.length !== numberOfDisks) return false;
 
+    // Loop through each disk in the tower.
     for (let i = 0; i < numberOfDisks; i++) {
+        // Check if the current disk's ID matches the expected order for a win.
+        // (i.e., the topmost disk should be the smallest, the next one should be the next size up, etc.)
         if (disks[i].id !== `disk${numberOfDisks - i}`) return false;
     }
+
+    // If all checks passed, return true.
     return true;
 }
 
+/**
+ * Retrieves the current game difficulty based on the number of disks present in the game.
+ * @returns {number} - The number of disks, indicating the current difficulty level.
+ */
 function getCurrentDifficulty() {
+    // Count all the disk elements in the document and return the count.
     return document.querySelectorAll(".disk").length;
 }
 
+// Get a reference to the win banner element to display when a player wins.
 const winBanner = document.getElementById('winBanner');
 
+/**
+ * Displays a congratulatory message when the player wins the game.
+ * @param {number} numberOfDisks - The number of disks used in the winning game.
+ */
 function displayWinningMessage(numberOfDisks) {
+    // Set the innerHTML of the win banner with the congratulatory message.
     winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks!`;
+    
+    // Make the win banner visible.
     winBanner.style.display = 'block';
 }
