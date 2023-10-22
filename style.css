@@ -1,0 +1,47 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.game-board {
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+}
+
+.tower {
+    width: 30px;
+    height: 300px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column-reverse; /* Stack children from the bottom */
+    align-items: center; /* Center children horizontally */
+    padding-bottom: 10px; /* Some space at the bottom */
+}
+
+.disk {
+    width: 60px;
+    height: 30px;
+    margin-top: 5px; /* Some space between disks */
+    cursor: pointer;
+}
+
+#disk1 {
+    width: 60px;
+    background-color: red;
+}
+
+#disk2 {
+    width: 90px;
+    background-color: green;
+}
+
+#disk3 {
+    width: 120px;
+    background-color: blue;
+}
