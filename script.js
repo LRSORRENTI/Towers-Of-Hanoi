@@ -85,11 +85,11 @@ function isValidMove(tower, disk) {
 
 // A configuration object mapping disk numbers to their respective width and background color.
 const diskConfigs = {
-    1: { width: "90px", backgroundColor: "red" },
+    1: { width: "90px", backgroundColor: "lime" },
     2: { width: "120px", backgroundColor: "green" },
-    3: { width: "150px", backgroundColor: "blue" },
-    4: { width: "180px", backgroundColor: "purple" },
-    5: { width: "210px", backgroundColor: "yellow" }
+    3: { width: "150px", backgroundColor: "var(--lightTurq)" },
+    4: { width: "180px", backgroundColor: "lightcoral" },
+    5: { width: "210px", backgroundColor: "var(--lime)" }
 }
 
 function addDisk(diskNumber) {

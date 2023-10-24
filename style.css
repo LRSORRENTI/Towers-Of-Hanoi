@@ -1,27 +1,63 @@
+:root {
+    --main: #21354DFD;
+    --sec: #176B87;
+    --turqoise: #64CCC5;
+    --lightTurq: #DAFFFB;
+    --purp: #9400FF;
+    --lime: #A2FF86;
+}
+
+@font-face {
+    font-family: 'JosefinSans';
+    src: url(/fonts/JosefinSans-VariableFont_wght.ttf) format('truetype');
+}
+
+* {
+    margin: 0;
+}
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'JosefinSans', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: var(--main)
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    color: var(--lightTurq);
+    font-size: 40px;
 }
 
 .game-board {
     display: flex;
     justify-content: space-around;
     width: 600px;
+    /* border: 1px solid lightcoral; */
+    margin-top: 10%;
 }
 
 .tower {
     width: 30px;
     height: 300px;
-    background-color: #333;
+    background-color: #ffffffd0;
+    border-radius: 5px;
+    border: 3px solid var(--purp);
     display: flex;
     flex-direction: column-reverse; /* Stack children from the bottom */
     align-items: center; /* Center children horizontally */
     padding-bottom: 10px; /* Some space at the bottom */
+}
+
+.controls {
+    /* border: 1px solid blueviolet; */
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-right: 10px;
 }
 
 .disk {
@@ -29,6 +65,8 @@ body {
     height: 30px;
     margin-top: 5px; /* Some space between disks */
     cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid rgb(199, 199, 199);
 }
 
 #disk1 {
@@ -44,4 +82,37 @@ body {
 #disk3 {
     width: 120px;
     background-color: blue;
+    background-color: var(--lightTurq);
+}
+
+#winBanner {
+    width: 563px;
+    border-radius: 8px;
+    box-shadow: 7px 3px 3px grey;
+    background-color: var(--purp);
+    color: whitesmoke;
+    font-weight: bold;
+}
+ 
+button {
+    font-family: 'JosefinSans', sans-serif;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--purp);
+    color: whitesmoke;
+    font-size: 18px;
+    transition: .2s ease;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 2px 1px 1px grey;
+    font-size: 19px;
+  
+}
+
+.disk:-moz-drag-over {
+    border-radius: 5px;
 }
