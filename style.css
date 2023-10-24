@@ -25,6 +25,13 @@ body {
     background-color: var(--main)
 }
 
+h1 {
+    display: flex;
+    justify-content: center;
+    color: var(--lightTurq);
+    font-size: 40px;
+}
+
 .game-board {
     display: flex;
     justify-content: space-around;
@@ -48,7 +55,7 @@ body {
 .controls {
     /* border: 1px solid blueviolet; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin-top: 10%;
     margin-right: 10px;
 }
@@ -95,6 +102,8 @@ button {
     color: whitesmoke;
     font-size: 18px;
     transition: .2s ease;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 button:hover {
