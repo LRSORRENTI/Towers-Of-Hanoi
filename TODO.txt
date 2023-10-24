@@ -18,3 +18,7 @@ Maybe implement some of the following:
 6. **Save Game State**: Use `localStorage` or indexedDB to save the game's state 
      so that users can pick up where they left off if they close the browser.
 
+7. Need to add some paragraph or tooltip maybe 
+  that activates on click of the how to play button, 
+  maybe display none of a paragraph beneath, 
+  then onclick change it to display block
