@@ -1,8 +1,24 @@
 // Initialize a variable to hold the currently dragged item.
 let draggedItem = null;
 
+function isTopmostDisk(disk) {
+    // Get the parent (tower) of the disk.
+    const tower = disk.parentElement;
+
+    // Return true if the disk is the last element child (topmost) of the tower.
+    return tower.lastElementChild === disk;
+}
+
+
 // Attach an event listener for the dragstart event to the whole document.
 document.addEventListener("dragstart", function(event) {
+     // If the target is not the topmost disk, prevent dragging and return.
+    if (!isTopmostDisk(event.target)) {
+        event.preventDefault();
+        return;
+    }
+
+    
     // Set the draggedItem variable to the element being dragged.
     draggedItem = event.target;
 
