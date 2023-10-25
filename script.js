@@ -96,7 +96,8 @@ function isValidMove(tower, disk) {
     if (!disks.length) return true;
 
     // Get the disk at the top of the tower (which would be the smallest disk currently on the tower).
-    const topDisk = disks[0];
+    // const topDisk = disks[0];
+    const topDisk = disks[disks.length - 1];
 
     // Compare the IDs of the top disk and the disk being moved to determine if the move is valid.
     // The logic is that a disk can only be placed on top of a larger disk.
