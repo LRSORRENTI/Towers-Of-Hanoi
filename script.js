@@ -59,6 +59,11 @@ document.querySelectorAll(".tower").forEach(tower => {
         // Prevent the default browser behavior for drop events.
         event.preventDefault();
 
+        if (isValidMove(tower, draggedItem)) {
+            tower.appendChild(draggedItem);
+            moveCounter++; // Increment the move counter here.
+        }
+
         // Check if it's a valid move using the isValidMove function.
         if (isValidMove(tower, draggedItem)) {
             // If it's a valid move, append the dragged item (disk) to the tower.
@@ -153,6 +158,8 @@ function resetGame() {
     // Get a NodeList of all towers.
     const towers = document.querySelectorAll(".tower");
     
+    moveCounter = 0;
+
     // For each tower...
     towers.forEach(tower => {
         // ...while the tower has a disk (a child element)...
@@ -234,9 +241,20 @@ const winBanner = document.getElementById('winBanner');
  * Displays a congratulatory message when the player wins the game.
  * @param {number} numberOfDisks - The number of disks used in the winning game.
  */
+
+//Initialize a Move Counter
+// to keep track of the number of moves made.
+
+let moveCounter = 0;
+
+// Each time a successful drop (move) is made, 
+// increment the counter in the drop event listener
+// above
+
 function displayWinningMessage(numberOfDisks) {
     // Set the innerHTML of the win banner with the congratulatory message.
-    winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks!`;
+    winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks
+    in ${moveCounter} moves!`;
     
     // Make the win banner visible.
     winBanner.style.display = 'block';
