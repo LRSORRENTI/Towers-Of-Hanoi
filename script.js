@@ -1,8 +1,24 @@
 // Initialize a variable to hold the currently dragged item.
 let draggedItem = null;
 
+function isTopmostDisk(disk) {
+    // Get the parent (tower) of the disk.
+    const tower = disk.parentElement;
+
+    // Return true if the disk is the last element child (topmost) of the tower.
+    return tower.lastElementChild === disk;
+}
+
+
 // Attach an event listener for the dragstart event to the whole document.
 document.addEventListener("dragstart", function(event) {
+     // If the target is not the topmost disk, prevent dragging and return.
+    if (!isTopmostDisk(event.target)) {
+        event.preventDefault();
+        return;
+    }
+
+    
     // Set the draggedItem variable to the element being dragged.
     draggedItem = event.target;
 
@@ -43,6 +59,11 @@ document.querySelectorAll(".tower").forEach(tower => {
         // Prevent the default browser behavior for drop events.
         event.preventDefault();
 
+        if (isValidMove(tower, draggedItem)) {
+            tower.appendChild(draggedItem);
+            moveCounter++; // Increment the move counter here.
+        }
+
         // Check if it's a valid move using the isValidMove function.
         if (isValidMove(tower, draggedItem)) {
             // If it's a valid move, append the dragged item (disk) to the tower.
@@ -75,7 +96,8 @@ function isValidMove(tower, disk) {
     if (!disks.length) return true;
 
     // Get the disk at the top of the tower (which would be the smallest disk currently on the tower).
-    const topDisk = disks[0];
+    // const topDisk = disks[0];
+    const topDisk = disks[disks.length - 1];
 
     // Compare the IDs of the top disk and the disk being moved to determine if the move is valid.
     // The logic is that a disk can only be placed on top of a larger disk.
@@ -85,11 +107,11 @@ function isValidMove(tower, disk) {
 
 // A configuration object mapping disk numbers to their respective width and background color.
 const diskConfigs = {
-    1: { width: "90px", backgroundColor: "lime" },
-    2: { width: "120px", backgroundColor: "green" },
-    3: { width: "150px", backgroundColor: "var(--lightTurq)" },
-    4: { width: "180px", backgroundColor: "lightcoral" },
-    5: { width: "210px", backgroundColor: "var(--lime)" }
+    1: { width: "90px"},
+    2: { width: "120px"},
+    3: { width: "150px"},
+    4: { width: "180px" },
+    5: { width: "210px" }
 }
 
 function addDisk(diskNumber) {
@@ -137,6 +159,8 @@ function resetGame() {
     // Get a NodeList of all towers.
     const towers = document.querySelectorAll(".tower");
     
+    moveCounter = 0;
+
     // For each tower...
     towers.forEach(tower => {
         // ...while the tower has a disk (a child element)...
@@ -218,9 +242,20 @@ const winBanner = document.getElementById('winBanner');
  * Displays a congratulatory message when the player wins the game.
  * @param {number} numberOfDisks - The number of disks used in the winning game.
  */
+
+//Initialize a Move Counter
+// to keep track of the number of moves made.
+
+let moveCounter = 0;
+
+// Each time a successful drop (move) is made, 
+// increment the counter in the drop event listener
+// above
+
 function displayWinningMessage(numberOfDisks) {
     // Set the innerHTML of the win banner with the congratulatory message.
-    winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks!`;
+    winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks
+    in ${moveCounter} moves!`;
     
     // Make the win banner visible.
     winBanner.style.display = 'block';
