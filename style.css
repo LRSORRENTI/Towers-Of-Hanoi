@@ -38,7 +38,8 @@ h1 {
     width: 600px;
     /* border: 1px solid lightcoral; */
     margin-top: 10%;
-    box-shadow: 0px 0px 20px var(--lime);
+    /* box-shadow: 0px 0px 20px var(--lime); */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border-radius: 10px;
     padding: 20px;
 }
@@ -136,7 +137,7 @@ button:hover {
 .jw-modal {
     /* modals are hidden by default */
     display: none;
-
+    width: 300px;
     /* modal container fixed across whole screen */
     position: fixed;
     inset: 0;
@@ -145,11 +146,49 @@ button:hover {
     z-index: 10000;
     
     /* semi-transparent black background exposed by padding */
-    background-color: rgba(0, 0, 0, .75);
-    padding: 40px;
+    background-color: rgba(148, 0, 255, .25);
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 
     /* enables scrolling for tall modals */
     overflow: auto;
+    margin: 50px auto;
+}
+.jw-modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.jw-modal h3 {
+    font-size: 20px;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.jw-modal p, .jw-modal ol {
+    font-size: 16px;
+    color: #777;
+    line-height: 1.5;
+}
+
+.jw-modal ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.jw-modal p strong {
+    font-weight: bold;
+    color: #444;
+}
+
+#modalClose {
+    margin-top: 10px;
+    display: flex;
+    margin-left: 70%;
 }
 
 .jw-modal.open {
@@ -158,7 +197,7 @@ button:hover {
 
 .jw-modal-body {
     padding: 20px;
-    background: #fff;
+    background: #ffffff;
 }
 
 body.jw-modal-open {
