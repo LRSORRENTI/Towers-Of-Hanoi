@@ -38,7 +38,8 @@ h1 {
     width: 600px;
     /* border: 1px solid lightcoral; */
     margin-top: 10%;
-    box-shadow: 0px 0px 20px var(--lime);
+    /* box-shadow: 0px 0px 20px var(--lime); */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border-radius: 10px;
     padding: 20px;
 }
@@ -46,7 +47,7 @@ h1 {
 .tower {
     width: 30px;
     height: 300px;
-    background-color: #ffffffd0;
+    background-color: #e7e7e7d0;
     border-radius: 5px;
     border: 3px solid var(--purp);
     display: flex;
@@ -70,6 +71,7 @@ h1 {
     cursor: pointer;
     border-radius: 5px;
     border: 2px solid rgb(199, 199, 199);
+    transition: all 0.3s ease;
 }
 
 #disk1 {
@@ -101,7 +103,7 @@ h1 {
 #winBanner {
     width: 563px;
     border-radius: 8px;
-    box-shadow: 7px 3px 3px grey;
+    box-shadow: 1px 2px 10px var(--lime);
     background-color: var(--purp);
     color: whitesmoke;
     font-weight: bold;
@@ -125,4 +127,80 @@ button:hover {
     box-shadow: 2px 1px 1px var(--lime);
     font-size: 19px;
   
+}
+
+.disk:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 2px 10px var(--lime)
+}
+
+.jw-modal {
+    /* modals are hidden by default */
+    display: none;
+    width: 300px;
+    /* modal container fixed across whole screen */
+    position: fixed;
+    inset: 0;
+
+    /* z-index must be higher than everything else on the page */
+    z-index: 10000;
+    
+    /* semi-transparent black background exposed by padding */
+    background-color: rgba(148, 0, 255, .25);
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    /* enables scrolling for tall modals */
+    overflow: auto;
+    margin: 50px auto;
+}
+.jw-modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.jw-modal h3 {
+    font-size: 20px;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.jw-modal p, .jw-modal ol {
+    font-size: 16px;
+    color: #777;
+    line-height: 1.5;
+}
+
+.jw-modal ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.jw-modal p strong {
+    font-weight: bold;
+    color: #444;
+}
+
+#modalClose {
+    margin-top: 10px;
+    display: flex;
+    margin-left: 70%;
+}
+
+.jw-modal.open {
+    display: block;
+}
+
+.jw-modal-body {
+    padding: 20px;
+    background: #ffffff;
+}
+
+body.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
 }

@@ -1,10 +1,11 @@
 Maybe implement some of the following:
 
 1. **Enhanced Styling**: Update the visuals with CSS, 
-     maybe add animations for disk movement
-
-2. **Use TypeScript**: TypeScript can help catch type-related errors
-     at compile-time
+     maybe add animations for disk movement, also need to 
+     add styling and responsiveness for mobile / 
+     small screen sizes, using devtools device toggle 
+     the game doesn't really work on iphone or 
+     touchscreens
 
 3. **Timer and Move Counter**: Implement a timer to track how long it
      takes for the player to solve the puzzle and a move counter to
@@ -17,8 +18,3 @@ Maybe implement some of the following:
 
 6. **Save Game State**: Use `localStorage` or indexedDB to save the game's state 
      so that users can pick up where they left off if they close the browser.
-
-7. Need to add some paragraph or tooltip maybe 
-  that activates on click of the how to play button, 
-  maybe display none of a paragraph beneath, 
-  then onclick change it to display block
