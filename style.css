@@ -30,6 +30,8 @@ h1 {
     justify-content: center;
     color: var(--lightTurq);
     font-size: 50px;
+    font-style: oblique;
+    text-shadow: 2px 2px 3px var(--purp);
 }
 
 .game-board {
