@@ -1,5 +1,8 @@
 // Initialize a variable to hold the currently dragged item.
 let draggedItem = null;
+let timerIntervalId = null;
+let timerStartTime = null;
+let elapsedTimeMs = 0;
 
 function isTopmostDisk(disk) {
     // Get the parent (tower) of the disk.
@@ -59,15 +62,18 @@ document.querySelectorAll(".tower").forEach(tower => {
         // Prevent the default browser behavior for drop events.
         event.preventDefault();
 
-        if (isValidMove(tower, draggedItem)) {
-            tower.appendChild(draggedItem);
-            moveCounter++; // Increment the move counter here.
-        }
+        if (!draggedItem) return;
 
-        // Check if it's a valid move using the isValidMove function.
-        if (isValidMove(tower, draggedItem)) {
-            // If it's a valid move, append the dragged item (disk) to the tower.
+        const validMove = isValidMove(tower, draggedItem);
+        if (validMove) {
             tower.appendChild(draggedItem);
+            moveCounter++;
+            updateMoveDisplay();
+
+            // Start timing on the first successful move only.
+            if (moveCounter === 1) {
+                startTimer();
+            }
         }
 
         // Make the dragged item visible after it's been dropped.
@@ -81,6 +87,7 @@ document.querySelectorAll(".tower").forEach(tower => {
             // Check if the current configuration of the tower results in a win.
             if (checkTowerForWin(tower, numberOfDisks)) {
                 // If it's a win, display the winning message.
+                stopTimer();
                 displayWinningMessage(numberOfDisks);
             }
         }
@@ -160,6 +167,8 @@ function resetGame() {
     const towers = document.querySelectorAll(".tower");
     
     moveCounter = 0;
+    updateMoveDisplay();
+    resetTimer();
 
     // For each tower...
     towers.forEach(tower => {
@@ -237,6 +246,8 @@ function getCurrentDifficulty() {
 
 // Get a reference to the win banner element to display when a player wins.
 const winBanner = document.getElementById('winBanner');
+const moveDisplay = document.getElementById('moveDisplay');
+const timerDisplay = document.getElementById('timerDisplay');
 
 /**
  * Displays a congratulatory message when the player wins the game.
@@ -255,10 +266,60 @@ let moveCounter = 0;
 function displayWinningMessage(numberOfDisks) {
     // Set the innerHTML of the win banner with the congratulatory message.
     winBanner.innerHTML = `Congratulations! You've solved the Towers of Hanoi with ${numberOfDisks} disks
-    in ${moveCounter} moves!`;
+    in ${moveCounter} moves and with a time of: ${formatElapsedTime(elapsedTimeMs)}!`;
     
     // Make the win banner visible.
     winBanner.style.display = 'block';
+}
+
+function updateMoveDisplay() {
+    moveDisplay.textContent = `${moveCounter}`;
+}
+
+function updateTimerDisplay() {
+    const currentElapsed = timerStartTime ? Date.now() - timerStartTime : elapsedTimeMs;
+    timerDisplay.textContent = formatElapsedTime(currentElapsed);
+}
+
+function startTimer() {
+    if (timerIntervalId !== null) return;
+
+    timerStartTime = Date.now() - elapsedTimeMs;
+    updateTimerDisplay();
+    timerIntervalId = setInterval(updateTimerDisplay, 1000);
+}
+
+function stopTimer() {
+    if (timerStartTime) {
+        elapsedTimeMs = Date.now() - timerStartTime;
+    }
+
+    if (timerIntervalId !== null) {
+        clearInterval(timerIntervalId);
+        timerIntervalId = null;
+    }
+
+    timerStartTime = null;
+    updateTimerDisplay();
+}
+
+function resetTimer() {
+    if (timerIntervalId !== null) {
+        clearInterval(timerIntervalId);
+        timerIntervalId = null;
+    }
+
+    timerStartTime = null;
+    elapsedTimeMs = 0;
+    updateTimerDisplay();
+}
+
+function formatElapsedTime(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
 // open modal by id
@@ -274,6 +335,9 @@ function closeModal() {
 }
 
 window.addEventListener('load', function() {
+    updateMoveDisplay();
+    updateTimerDisplay();
+
     // close modals on background click
     document.addEventListener('click', event => {
         if (event.target.classList.contains('jw-modal')) {

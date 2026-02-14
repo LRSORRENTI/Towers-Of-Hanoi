@@ -7,14 +7,14 @@ Maybe implement some of the following:
      the game doesn't really work on iphone or 
      touchscreens
 
-3. **Timer and Move Counter**: Implement a timer to track how long it
+2. **Timer and Move Counter**: Implement a timer to track how long it
      takes for the player to solve the puzzle and a move counter to
      count the number of moves made. 
 
-4. **Mobile Responsiveness**: Ensure the game is playable and looks good on mobile devices. 
+3. **Mobile Responsiveness**: Ensure the game is playable and looks good on mobile devices. 
      This might involve touch controls rather than drag-and-drop.
 
-5. **Sound Effects**: Add sound effects for successful moves, invalid moves, and game completion.
+4. **Sound Effects**: Add sound effects for successful moves, invalid moves, and game completion.
 
-6. **Save Game State**: Use `localStorage` or indexedDB to save the game's state 
+5. **Save Game State**: Use `localStorage` or indexedDB to save the game's state 
      so that users can pick up where they left off if they close the browser.
