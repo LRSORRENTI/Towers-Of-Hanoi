@@ -1,64 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Towers of Hanoi</title>
     <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="game">
-        <h1>Towers Of Hanoi</h1>
-    <div id="winBanner" style="display:none; text-align:center; padding: 20px; font-size: 24px;">
+      <h1>Towers Of Hanoi</h1>
+      <div class="game-stats" aria-live="polite">
+        <div class="stat-pill">
+          <span class="stat-label">Time</span>
+          <span class="stat-value" id="timerDisplay">00:00</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-label">Moves</span>
+          <span class="stat-value" id="moveDisplay">0</span>
+        </div>
+      </div>
+      <div
+        id="winBanner"
+        style="
+          display: none;
+          text-align: center;
+          padding: 20px;
+          font-size: 24px;
+        "
+      >
         Congratulations! You've won!
+      </div>
+
+      <div class="game-board">
+        <div class="tower" id="tower1">
+          <div class="disk" id="disk3" draggable="true"></div>
+          <div class="disk" id="disk2" draggable="true"></div>
+          <div class="disk" id="disk1" draggable="true"></div>
+        </div>
+        <div class="tower" id="tower2"></div>
+        <div class="tower" id="tower3"></div>
+      </div>
+      <div class="controls">
+        <button onclick="addDisk(4)">Add 4th Disk</button>
+        <button onclick="addDisk(5)">Add 5th Disk</button>
+        <button onclick="resetGame()">Reset</button>
+        <button onclick="openModal('modal-1')">How To Play</button>
+      </div>
     </div>
-    
-    
-<div class="game-board">
-    <div class="tower" id="tower1">
-        <div class="disk" id="disk3" draggable="true"></div>
-        <div class="disk" id="disk2" draggable="true"></div>
-        <div class="disk" id="disk1" draggable="true"></div>
-    </div>
-    <div class="tower" id="tower2"></div>
-    <div class="tower" id="tower3"></div>
-</div>
-<div class="controls">
-    <button onclick="addDisk(4)">Add 4th Disk</button>
-    <button onclick="addDisk(5)">Add 5th Disk</button>
-    <button onclick="resetGame()">Reset</button>
-    <button  onclick="openModal('modal-1')">How To Play</button>
-</div>
-</div>
-<div id="modal-1" class="jw-modal">
-    <div class="jw-modal-body">
-      ` <h2>Towers Of Hanoi Quick Overview</h2>
-    
-      <h3>Goal:</h3>
-      <p>Move all the discs from the leftmost peg to the rightmost peg.</p>
-      
-      <h3>Rules:</h3>
-      <ol>
+    <div id="modal-1" class="jw-modal">
+      <div class="jw-modal-body">
+        <h2>Towers Of Hanoi Quick Overview</h2>
+
+        <h3>Goal:</h3>
+        <p>Move all the discs from the leftmost peg to the rightmost peg.</p>
+
+        <h3>Rules:</h3>
+        <ol>
           <li>Only one disc can be moved at a time.</li>
-          <li>A disc can only be moved to the top of another peg if it is smaller than the disc already there.</li>
+          <li>
+            A disc can only be moved to the top of another peg if it is smaller
+            than the disc already there.
+          </li>
           <li>Only the top disc of any peg can be moved.</li>
-      </ol>
-      
-      <h3>Steps:</h3>
-      <ol>
-          <li>Start with all discs on the leftmost peg, arranged largest at the bottom to smallest at the top.</li>
+        </ol>
+
+        <h3>Steps:</h3>
+        <ol>
+          <li>
+            Start with all discs on the leftmost peg, arranged largest at the
+            bottom to smallest at the top.
+          </li>
           <li>Move the discs one at a time, following the rules.</li>
-          <li>Aim to transfer the entire stack to the rightmost peg with the fewest moves possible.</li>
-      </ol>
-      
-      <p><strong>Tip:</strong> For an even number of discs, make the first move to the middle peg. For an odd number of discs, make the first move to the rightmost peg.</p>
-      
+          <li>
+            Aim to transfer the entire stack to the rightmost peg with the
+            fewest moves possible.
+          </li>
+        </ol>
+
+        <p>
+          <strong>Tip:</strong> For an even number of discs, make the first move
+          to the middle peg. For an odd number of discs, make the first move to
+          the rightmost peg.
+        </p>
+
         <button id="modalClose" onclick="closeModal()">Close</button>
+      </div>
     </div>
-</div>
 
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
