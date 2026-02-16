@@ -3,11 +3,25 @@
   --c2: #4da1a9;
   --c3: #79d7be;
   --c4: #f6f4f0;
-  --ink: #f6f4f0;
-  --ink-dim: #dce8e5;
-  --surface: rgba(255, 255, 255, 0.09);
-  --surface-strong: rgba(255, 255, 255, 0.15);
-  --ring: rgba(77, 161, 169, 0.45);
+  --ink: #f7fafc;
+  --ink-dim: #c9d6e2;
+  --ink-muted: #9fb2c4;
+  --surface: rgba(10, 24, 36, 0.35);
+  --surface-strong: rgba(10, 24, 36, 0.45);
+  --panel-border: rgba(255, 255, 255, 0.18);
+  --panel-divider: rgba(255, 255, 255, 0.1);
+  --button-surface: rgba(8, 20, 30, 0.35);
+  --button-border: rgba(255, 255, 255, 0.2);
+  --accent: #f6c177;
+  --accent-hover: #e8a84a;
+  --accent-glow: rgba(246, 193, 119, 0.35);
+  --accent-coral: #ff6b6b;
+  --accent-coral-hover: #ff4d4d;
+  --accent-orchid: #b79cff;
+  --accent-orchid-hover: #9d7cff;
+  --accent-copper: #d28b5c;
+  --accent-copper-hover: #c7773f;
+  --ring: rgba(246, 193, 119, 0.35);
   --shadow-1: 0 20px 45px rgba(10, 8, 28, 0.35);
   --shadow-2: 0 8px 20px rgba(10, 8, 28, 0.25);
 }
@@ -96,10 +110,10 @@ body::after {
   border-radius: 24px;
   background: linear-gradient(
     145deg,
-    rgba(34, 58, 87, 0.62),
-    rgba(77, 161, 169, 0.3)
+    rgba(10, 24, 36, 0.64),
+    rgba(46, 80, 119, 0.36)
   );
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--panel-border);
   box-shadow:
     var(--shadow-1),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -134,11 +148,13 @@ h1 {
   display: inline-flex;
   align-items: baseline;
   gap: 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 0.32rem 0.7rem 0.19rem;
-  background: rgba(19, 45, 63, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: var(--surface);
+  box-shadow:
+    inset 0 1px 0 var(--panel-divider),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .stat-label {
@@ -151,11 +167,15 @@ h1 {
 .stat-value {
   font-size: 1.02rem;
   font-weight: 730;
-  color: var(--c4);
+  color: var(--ink);
   min-width: 2.5ch;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+/* #moveDisplay, #timerDisplay {
+  color: var(--accent);
+} */
 
 .game-board {
   position: relative;
@@ -167,15 +187,15 @@ h1 {
   padding: clamp(1rem, 2.8vw, 1.8rem);
   margin: 0.8rem 0 1.4rem;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--panel-border);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.06)
+    rgba(10, 24, 36, 0.42),
+    rgba(10, 24, 36, 0.28)
   );
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 var(--panel-divider),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
     var(--shadow-2);
   overflow: hidden;
 }
@@ -291,34 +311,61 @@ h1 {
 
 #disk1 {
   width: 60px;
-  background: linear-gradient(90deg, #ffffff 0%, #eef6f3 28%, var(--c4) 100%);
+  background: linear-gradient(
+    102deg,
+    #ffe8c7 0%,
+    var(--accent) 48%,
+    var(--accent-hover) 100%
+  );
   animation-delay: -0.2s;
 }
 
 #disk2 {
   width: 90px;
-  background: linear-gradient(90deg, #f3fbf8 0%, #cbeee3 26%, var(--c3) 100%);
+  background: linear-gradient(
+    102deg,
+    #ffd7d7 0%,
+    var(--accent-coral) 50%,
+    var(--accent-coral-hover) 100%
+  );
   animation-delay: -0.6s;
 }
 
 #disk3 {
   width: 120px;
-  background: linear-gradient(90deg, #dfeff2 0%, #a8d6db 22%, var(--c2) 100%);
+  background: linear-gradient(
+    102deg,
+    #e9deff 0%,
+    var(--accent-orchid) 50%,
+    var(--accent-orchid-hover) 100%
+  );
   animation-delay: -1s;
 }
 
 #disk4 {
-  background: linear-gradient(90deg, #e7f1f4 0%, #8fc4cc 24%, var(--c1) 100%);
+  background: linear-gradient(
+    102deg,
+    #f0caaa 0%,
+    var(--accent-copper) 52%,
+    var(--accent-copper-hover) 100%
+  );
   animation-delay: -1.4s;
 }
 
 #disk5 {
-  background: linear-gradient(90deg, #f9f8f6 0%, #bde4db 25%, var(--c1) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--accent-copper) 0%,
+    var(--accent) 35%,
+    var(--accent-orchid) 70%,
+    var(--accent-coral-hover) 100%
+  );
   animation-delay: -1.8s;
 }
 
 .disk:hover {
   transform: translateY(-3px) scale(1.05);
+  border-color: var(--accent);
   box-shadow:
     0 14px 20px rgba(19, 16, 37, 0.4),
     0 0 0 5px var(--ring),
@@ -337,7 +384,7 @@ h1 {
   z-index: 20;
   pointer-events: none;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--panel-border);
   background: linear-gradient(
     120deg,
     rgba(77, 161, 169, 0.94),
@@ -363,16 +410,16 @@ h1 {
 
 button {
   font-family: "JosefinSans", sans-serif;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--button-border);
   padding: 0.78rem 1.05rem;
   border-radius: 999px;
   background: linear-gradient(
     120deg,
-    rgba(46, 80, 119, 0.72),
-    rgba(62, 130, 139, 0.7),
-    rgba(76, 149, 151, 0.68)
+    rgba(8, 20, 30, 0.42),
+    var(--button-surface),
+    rgba(8, 20, 30, 0.3)
   );
-  color: #fdfcf9;
+  color: #f7fafc;
   font-size: clamp(0.95rem, 1.8vw, 1.08rem);
   letter-spacing: 0.03em;
   font-weight: 680;
@@ -400,9 +447,10 @@ button::before {
 button:hover {
   cursor: pointer;
   transform: translateY(-2px) scale(1.03);
+  border-color: var(--accent);
   box-shadow:
     0 12px 22px rgba(14, 10, 30, 0.42),
-    0 0 0 4px rgba(77, 161, 169, 0.28);
+    0 0 0 4px var(--accent-glow);
 }
 
 button:hover::before {
@@ -411,6 +459,17 @@ button:hover::before {
 
 button:active {
   transform: translateY(1px) scale(0.99);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.how-to-play-btn:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.15rem;
 }
 
 .jw-modal {
