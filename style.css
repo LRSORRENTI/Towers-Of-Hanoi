@@ -260,7 +260,7 @@ h1 {
     inset 0 0 14px rgba(255, 255, 255, 0.28),
     0 18px 34px rgba(20, 16, 40, 0.45);
 }
-
+/* 
 .tower::before {
   content: "";
   position: absolute;
@@ -270,7 +270,7 @@ h1 {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.55);
   filter: blur(1px);
-}
+} */
 
 .disk {
   width: 60px;
