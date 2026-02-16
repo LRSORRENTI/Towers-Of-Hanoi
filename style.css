@@ -539,6 +539,7 @@ button:focus-visible {
   margin-top: 0.9rem;
   margin-left: auto;
   display: block;
+  background: linear-gradient(120deg, var(--c1), var(--c2), var(--c1));
 }
 
 body.jw-modal-open {
